@@ -1,0 +1,234 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[utf8]{inputenc}
+%\usepackage[frenchb]{babel}
+\usepackage{import}
+\usepackage{graphicx}
+\usepackage{subfig}
+
+\usepackage[upright]{fourier}
+\usepackage{color}
+\usepackage{url}
+\usepackage[colorlinks=true,hypertexnames=false,linkcolor=black,pagebackref]{hyperref}
+\usepackage{hyperref}
+\usepackage[numbers]{natbib}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}		
+\usepackage{amssymb}			
+\usepackage{amsfonts}		
+\usepackage{nicefrac}		
+\usepackage{multirow}
+\DeclareMathOperator{\Rot}{\overrightarrow{rot}}
+
+\title{LP25 : Oscillateurs portrait de phases et non linéarité}
+\author{Nicolas Chastrette}
+\date{March 2020}
+
+\begin{document}
+
+\maketitle
+\section*{Pour nous}
+\subsection*{Rapport du jury}
+\textbf{2017} : Les  définitions  d'un  oscillateur  et  d'un  portrait  de  phase  sont  attendues.  La  leçon  doit  présenter  des  systèmes comportant des non-linéarités.\\
+\textbf{2015} : L'intérêt de l'utilisation des portraits de phase doit ressortir de la leçon.\\
+\textbf{2013} :[À propos du nouveau titre] Les aspects non-linéaires doivent être abordés dans cette leçon sans développement calculatoire excessif, en utilisant judicieusement la notion de portrait de phase. Une simulation numérique bien présentée peut enrichir cette leçon.\\
+Jusqu’en 2013, le titre était : \textit{Exemples d’effets de non linéarité sur le comportement d’un oscillateur.}\\
+\textbf{2011, 2012} : Une simulation numérique bien présentée peut enrichir cette leçon.\\
+\textbf{2010} : L’analyse de l’anharmonicité des oscillations du pendule pesant ne constitue pas le coeur de la leçon.Différents effets des non linéarités doivent être présentés.\\
+\textbf{2007, 2008} : Le régime forcé des oscillateurs non linéaires est également envisageable.\\
+\textbf{2003} : La leçon ne doit pas se limiter à une résolution d’équations différentielles non linéaires. Une discussion des effets en liaison avec la forme de l’énergie potentielle peut être intéressante. La présentation d’un oscillateur de van der Pol précablé sur une plaquette reste trop souvent théorique. En quoi ce système est-il représentatif deproblèmes usuels en électronique?\\
+Jusqu’en 2002, le titre était :\textit{Exemples d’effets de non linéarité sur le comportement d’un oscillateur.}\\
+\textbf{2000} : Celle leçon est parfois présentée de façon très abstraite. Par ailleurs on doit s’efforcer de varier les exemples,en tout cas de ne pas les limiter exclusivement à l’électronique.\\
+\textbf{1999} : La simple étude de la non-linéarité du pendule simple et du vase de Tantale ne peut suffire. Il faut dégager clairement, sur différents exemples, l’impact des non-linéarités sur (selon les cas) la période, l’amplitude des oscillations, voire la forme du signal, sa valeur moyenne.\\
+\textbf{1997}:Le jury regrette que certains candidats passent beaucoup de temps à traiter de l’effet relativement banal de certaines non-linéarités, comme l’influence de l’amplitude du mouvement sur la période d’oscillation d’un pendule, sans évoquer les phénomènes, beaucoup plus riches, d’instabilités ou de transition vers le chaos.
+\subsection*{biblio}
+\begin{itemize}
+	\item Mathieu et Hugo
+	\item BUP dans le dossier
+	\item De l'ordre dans le chaos, Berger et al.
+\end{itemize}
+
+
+\section{Introduction}
+\subsection{prerequis}
+\begin{itemize}
+\item mecanique 
+\end{itemize}
+\subsection{Intro}
+Dans les leçons précédentes nous avons étudié différents cas d'oscillateurs (masse ressort, circuit RLC, helmotz etc) qui semblent être des problèmes purement artificiels.Au contraire, le mouvement oscillant est devenu avec l'industrie la base de nombreuse machine et La notion de fréquence propre est devenue primordiale (pont qui s'écroule sous l'action du vent ou des soldats marchant au pas). Dans la nature on observe nombre d'oscillations qui surviennent spontanément (par exemple vortex de Von Karman derrière un cylindre), les cycles proies prédateurs oscillant ont été observé dans les espaces naturels, les réaction chimique oscillantes. Nous allons dans cette leçon nous intéresser à une approche de ces phénomènes de manière globale.
+\section{Oscillateur et portrait de phase}
+
+\subsection{Mise en equation du pb}
+Pour illustrer la les oscillateurs  nous allons nous servir du pendule simple qui est un des oscillateurs le plus étudié historiquement (il a servit pour mesurer le temps avec les horloges à balancier). Un pendule simple peu être  modélisé par une masse $m$ suspendu au bout d'un 
+\uline{fil inextensible} de longueur 
+$\ell$. Le fil est relié à un axe  \uline{ne travaillant pas} de manière à ce qu'il soit libre d'osciller. On note $\theta$ l'angle qu'il fait avec la verticale. 
+\begin{figure}
+   \centering
+   \def\svgwidth{0.50\textwidth}
+  \large
+   \import{/}{dessin.pdf_tex}
+   \caption{Schéma du pendule. L'axe est composé d'un potentiomètre, la longueur de la tige est $\ell$ et la masse m}
+   \label{fig:pendule}
+\end{figure}
+
+L'énergie mécanique de la masse s'écrit donc comme $E=E_c +E_p$
+ou $$E_c= \frac{1}{2} m \ell^2 \dot{\theta}^2$$ et $$E_p = mg\ell \left(1-\cos\theta \right)$$. d'où
+\begin{equation}
+    E= \frac{1}{2} m \ell^2 \dot{\theta}^2+mg\ell \left(1-\cos\theta \right)
+\end{equation}
+Pour $\theta \in [-\frac{\pi}{2} \frac{\pi}{2}]$ le systèmes possède 3 positions d'équilibre 1 stable et deux instables. (1 minimum et de 2  maximum d'énergie potentielle) \\
+En fonction de l'energie $E$ on distaingue deux types de mouvement 
+\begin{itemize}
+    \item $E<E_{p, max}$ Le système oscille autour de la position $\theta = 0$
+    \item $E=E_{p, max}$ Le système oscille entre $\theta=-\pi $ et $\pi$
+    \item $E > E_{p, max}$ le système tourne autours de son axe (révolutif)
+\end{itemize}
+
+
+Le poids étant une force conservatrice, il ne travail pas donc l'énergie mécanique est conservée.
+On en tire donc comme équation du mouvement 
+\begin{equation}
+    \ddot{\theta} + \omega_0^2\sin(\theta)=0
+\end{equation}
+avec $$\omega_0 = \sqrt{\frac{g}{l}}$$. Cette équation est non linéaire à cause du terme en sinus. \\
+Plutôt que d'essayer de résoudre cette équation analytiquement on va voir une approche différente. 
+
+\subsection{portrait de phase}
+Pour résoudre l'équation du mouvement avec une approche plus numérique d'analytique, nous allons avoir besoin de nouveaux outils. 
+Nous allons commencer par quelques définitions:
+\begin{itemize}
+    \item \textbf{Espace de phase} : espace dont les axes sont les coordonnées de position et de vitesse.
+    \item \textbf{trajectoire des phases} : toute courbes de l'espace des phases qui est représentative de l'évolution du système
+    \item \textbf{portrait de phase} : l'ensemble des trajectoires de phase
+\end{itemize}
+On peut a l'aide d'un intégreur numérique tracer le portrait de phase du pendule simple. 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{portrait_phase_pend_simple}
+    \caption{portrait de phase du pendule simple.}
+    \label{fig:portrait_phase_pend_simple}
+\end{figure}
+On représente sur la figure~\ref{fig:portrait_phase_pend_simple} le portrait de phase du pendule simple. On peut diviser ce portrait en 2 zones:
+\begin{itemize}
+    \item Les courbes incluse dans la courbe rouge représente des trajectoires oscillantes. 
+    \item les courbes au delà de la courbe rouge représente des trajectoires révolutives. 
+    \item la courbe rouge est appelées séparatrice.
+\end{itemize}
+Le parcours se dait dans le sens des aiguilles d'une montre de manière à ce que lorsque $\theta>0\nearrow\dot\theta \swarrow $ 
+On remarque que les trajectoires correspondant à des mouvements oscillantes sont fermées. Dans le système de coordonnées choisit les trajectoires avec un faible angle initiale sont des cercles alors que celles avec un grand angle initiale sont des ellipses. \\
+
+On peut maintenant interpréter les observations de ce portrait de phase pour des faibles angles. L'équation du mouvement du pendule simple devient dans ce cas ($\sin(\theta)\simeq \theta$ pour $\theta<20$)
+
+\begin{equation}
+    \ddot{\theta} + \omega_0^2\theta=0
+\end{equation}
+que l'on reconnaît comme une équation d'un oscillateur harmonique donc que l'on sait résoudre. 
+$\theta (t) = \theta_0*\cos(\omega_0 t)$
+et $\dot\theta= -\theta_0 \omega_0 \sin(\omega_0 t)$
+D'où l'équation de la trajectoire est 
+\begin{equation}
+    \theta^2+\left(\frac{\dot\theta}{\omega_0}\right)^2 =\theta_0^2
+\end{equation}
+Que l'on reconnait comme étant un cercle dans le repère $\left(\theta, \dot\theta/\omega_0\right)$
+On trouve donc comme période des oscillations $$T_0 = 2\pi \sqrt{\frac{\ell}{g}}$$
+
+On sais que l'amplitude des oscillations du pendule simple diminue si l'on rajoute un terme d'amortissement. On peut alors modéliser le mouvement du pendule amortit aux faibles angles comme 
+
+\begin{equation}
+    \ddot\theta + \gamma \dot{\theta} + \omega_0 \theta=0
+    \label{pend_ammort}
+\end{equation}
+avec $_\gamma$ l'amortissement, si $\gamma>0$ le pendule dissipe et son portrait de phase devient \ref{subfig_pend_amort}. On appel alors le point d'équilibre du pendule point attracteur et si $\gamma <0 $ les trajectoires l'éloignent du point d'équilibre on parle alors de point répulsif. 
+Nous venons d'expliquer la forme des trajectoires circulaires du diagramme de phase du pendule simple comment pouvons nous maintenant expliquer la trajectoire de phase verte qui n'est pas un cercle mais clairement une ellipse ? Pour ce faire nous avons besoin de reprendre des considérations plus large.
+
+\begin{figure}
+    \centering
+    \subfloat[portrait de phase amortit. Le mouvement du pendule converge vers un point attracteur.]{\includegraphics[width=0.47\textwidth]{portrait_phase_amortit.pdf}\label{subfig_pend_amort}}
+    \hspace{5mm}
+    \subfloat[portrait de phase amplifié. Le mouvement du pendule diverge on parle depoint répulsif .]{\includegraphics[width=0.47\textwidth]{portrait_phase_amplifie.pdf}}
+\end{figure}
+
+\subsection{Vers le non linéaire}
+Un potentiel peu prendre toutes sortes de formes non harmonique par exemple ici le pendule simple où $E_p=mg\ell \left(1-\cos\theta \right)$, les potentiels de Van der Walls etc. 
+
+Cependant ces potentiels présentent tous un minimum auquel on associe une position d'équilibre stable. Proche de ces positions d'équilibre stable, on peut développer le potentiel comme
+\begin{equation}
+    E_p(\theta) = E_p(\theta_\mathrm{eq}) + \underbrace{\left.\frac{dEp}{d\theta}\right|_{\theta_\mathrm{eq}}\left(\theta-\theta_\mathrm{eq}\right)}_{=0}
+    + \underbrace{\left.\frac{d^2Ep}{d\theta^2}\right|_{\theta_\mathrm{eq}}\left(\theta-\theta_\mathrm{eq}\right)^2}_{\mathrm{type~harmonique}}
+    + \left.\frac{d^3Ep}{d^3\theta}\right|_{\theta_\mathrm{eq}}\left(\theta-\theta_\mathrm{eq}\right)^3
+    + \left.\frac{d^4Ep}{d\theta^4}\right|_{\theta_\mathrm{eq}}\left(\theta-\theta_\mathrm{eq}\right)^4
+    +\cdot\cdot\cdot
+\end{equation}
+
+En développant l'expression du pendule simple au 1er ordre suppérieur à deux non nul donc l'ordre 4 on trouve : 
+$E_p (\theta)=\frac{mg\ell}{2}\theta^2-\frac{mg \ell}{24}\theta^4 $
+
+D'où l'énergie mécanique devient $$ E = \frac{1}{2} m \ell^2 \dot{\theta}^2+\frac{1}{2}mg\ell\theta^2\left(1-\frac{\theta^2}{12}\right)$$ Donc l'équation du mouvement s'écrit
+\begin{equation}
+    \ddot\theta + \omega_0^2\theta\left(1-\frac{\theta^2}{6}\right)=0
+    \label{pend_ord3}
+\end{equation}
+Où l'on voit apparaître un terme non linéaire. \footnote{développement dans le bup 891 mais coquilles sur l'expression de l'équation\ref{dev_pert}}
+Étant donnée que  $\sin^3(x)=\frac{3\sin(\omega t)-\sin(3\omega t)}{4}$ on va chercher la solution de l'équation~\ref{pend_ord3} à l'aide d'un développement perturbatif sous la forme  $$ \theta = \theta_\mathrm{m}\left( \sin(\omega t)+\epsilon \sin(3\omega t) \right)$$ 
+avec $\theta$ et $\epsilon$ petit.On réinjecte cette solution dans l'équation~\ref{pend_ord3} et on trouve
+
+\begin{equation}
+    \forall t \quad \sin(\omega t) \left(\theta_0 \left(\omega_0^2-\omega^2\right) -\frac{\theta_m^3}{8}\omega_0\right) + \sin(3\omega t)\left( \theta_m \epsilon\left( \omega_0^2 - 9 \omega ^2\right) + \frac{\omega_0 \theta^3_0}{24}\right)=0
+    \label{dev_pert}
+\end{equation}
+
+En annulant chacun des termes devant les sinus on trouve($\theta_0$petit donc DL et neglige dans le calcul ) : 
+\begin{equation}
+\begin{array}{clc}
+     T=&T_0\left(1 +\frac{\theta_0^2}{8} \right)&\quad T_0=2\pi\sqrt{\frac{\ell}{g}}  \\
+     \epsilon=& \frac{\theta_0^2}{192}
+\end{array}
+\end{equation}
+Je vous propose maintenant de regarder expérimentalement l'existence d'harmonique 3 et leurs dépendance avec $\theta_{max}$. (\textcolor{red}{à faire en manip, discussion des incertitudes etc.})
+
+La présence d'harmonique pourrait expliquer la forme elliptique observé sur le diagramme de phase.
+
+\section{Oscillateur auto entretenu}
+
+
+Il existe dans la nature des exemples d'oscillateurs auto entretenus (cité dans l'intro), cependant les équations type oscillateurs amorti comme la formule \ref{subfig_pend_amort}, ne peuvent exister dans la nature. Si le signe de l'amortissement est positif le système s'amortie et donc il n'y à pas d'oscillation si le signe de l'amortissement est négatif, les oscillations croissent vers l'infini engendrant une énergie de l'oscillateur tendant vers l'infini (ce qui serai bien pratique  mais pas physique). De plus l'équation\ref{subfig_pend_amort} est une équation linéaire donc si $\theta(t)$ est solution alors $\forall\alpha\in\mathbb{R}, \alpha \theta(t) $ est solution, ce qui est contradictoire avec l'existence d'amplitude déterminé (mesuré expérimentalement). Il faut donc pour modéliser de tels systèmes 
+\begin{itemize}
+    \item détruire l'invariance par translation.
+    \item limiter l'augmentation de l'énergie pour un amortissement négatif
+    \item lorsque l'amortissement est positif, il faut un terme qui introduise de l'énergie pour compenser les pertes d'énergie. 
+\end{itemize}
+
+Monsieur Van der Pol propose en 1922 une manière de résoudre ces problèmes
+\subsection{Oscillateur de Van der Pol}
+Il a remarquer qu'en faisant dépendre le coefficient d'amortissement de l'amplitude des oscillations. Il faut d'abord que le coefficient d'amortissement soit négatif pour de faibles amplitudes d'oscillations (de manières à ce que les oscillations croissent) puis positive (pour que l'amplitude des oscillations reste fini). Il faut aussi que le comportement de l'oscillateur soit le même indépendemment du signe de l'amplitude de l'oscillation donc élever $\theta$ au carré dans la dépendance.
+Van der Pol propose donc d'écrire $$\gamma(\theta)= -\gamma_0\left(1-\frac{\theta^2}{\theta_0^2} \right)$$, où $\gamma_0>0$ et $\theta_0$ est l'amplitude de référence. En Réinjectant l'expression de $\gamma(\theta)$ dans l'équation\ref{pend_ammort}, on trouve l'équation de Van der Pol
+\begin{equation}
+    \ddot\theta - -\gamma_0\left(1-\frac{\theta^2}{\theta_0^2} \right)\dot\theta +\omega_0\theta =0
+    \label{eq:VanderPol}
+\end{equation}
+
+On peut adimentionner cette expression pour la mettre sous la forme $$ \frac{d^2\tilde{\theta}}{d\tilde{t}^2} -\left(\epsilon -\tilde{\theta}\right)\frac{d\tilde{\theta}}{d\tilde{t}}+\tilde{\theta}=0$$ où $\tilde{\theta}= \theta_0\sqrt{\omega_0/\gamma_0}$, $\tilde{t}= t/\omega_0$ et $\epsilon = \gamma_0/\omega_0$.
+
+On peut alors en tracer le portrait de phase à l'aide d'un petit script que l'on représente sur la figure~\ref{fig:Vanderpol}\footnote{Une étude expérimentale est décrite dans le Krob \uline{Électronique expérimentale} p 172 le circuit est compliqué mais ca peut être jouable}. On remarque que l'on trouve le comportement attendu, dans le cas où l'amplitude des oscillations diminue jusqu'à atteindre l'amplitude de contrôle (en rouge) l'amplitude d'oscillations faible augmente aussi (en bleu) jusqu'à atteindre l'amplitude de contrôle. Les deux comportement adoptent alors une même trajectoire fermée. On appelle ce comportement attracteur. En fonction de la valeur d'$\epsilon$ appelé paramètre de contrôle, la forme du cycle attracteur varie ($\epsilon \ll 1$ cercles, $\epsilon$ grand cycle attracteur tend vers un rectangle (\textcolor{red}{faire varier dans le script}). 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\linewidth]{portrait_phase_van_der_pol.pdf}
+    \caption{Courbe rouge : oscillations avec une amplitude initiale supérieur à l'amplitude de contrôle. Bleu le contraire}
+    \label{fig:Vanderpol}
+\end{figure}
+
+On voit bien une différence de comportement significative en fonction de la valeur du paramètre de contrôle. Si la valeur de $\epsilon <\epsilon_c$ alors on observe l'existence d'un point attracteur. Si $\epsilon>\epsilon_c$ on observe un cycle attracteur et si $\epsilon=\epsilon_c$ on observe des cercles concentriques. Lorsque l'on passe d'un point à un cycle critique à un cycle critique on a affaire à une bifurcation de Hopf. L'amplitude du cycle est proportionnel à la racine carré de l'écart au point de biffurcation ($\sqrt{\epsilon-\epsilon_c}$) et la période des oscillations est indépendante de cet écart (au 2d ordre).  
+\begin{figure}
+    \centering
+    \includegraphics[width=.9\linewidth]{bifurc_Hopf.png}
+    \caption{Tirée de \textit{l'ordre dans le chaos}, Berger \textit{et al.} }
+    \label{fig:my_label}
+\end{figure}
+
+\section{Conclusion}
+
+Dans cette leçon nous avons mis en évidence la notion de portrait de phases et vus comment cette notion nous permet à partir des conditions initiales de trouver le comportement du système a long temps. Cette notion nous montre que certains systèmes sont très sensibles aux conditions initiales :  la fameuse notion d'effet papillon sur la météo : ce sont des systèmes chaotiques. 
+\end{document}
