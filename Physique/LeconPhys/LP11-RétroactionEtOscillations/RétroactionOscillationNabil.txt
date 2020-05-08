@@ -1,0 +1,7 @@
+-Forcément l'oscillateur va diverger. Pourquoi avez-vous dit cela ? 
+-Peut-on faire un oscillateur sans être sur cet exemple là. 
+-Bruit thermique caractérise 4kTRDeltaF
+-Bruit Grenaille, schotky
+- Application sur l'oscillateur écrété. 
+- Tester une enceinte. Qualité de la réponse d'une enceinte. Ou aspect sinusoidale d'une porteuse pour france inter.
+- Oscillateur à quartz.

@@ -1,0 +1,36 @@
+44:00 Montage spectro
+46:02 Rappels de bases
+Spectrométrie fondamentale : rayonnement du corps noir + spectre discret des atomes.
+Fenêtre sur l'univers car composition des étoiles. 
+
+47:25. Deux classes de spectromètres:  1-Fentes et réseau. 2-A transformée de Fourier.
+Connaître le principe de fonctionnement 
+Fente image sur un écran. Sur le chemin des rayon, élément dispersif (réseau). Ca dévie les rayons d'un angle lié à la longueur d'onde.
+L'image de la fente va être dévié en fonction de leur longueur d'ondr.
+49:55. Pouvoir de résolution. Si j'ai deux images proches, je ne peux plus les distinguer.
+Image a une origine géométrique. + diffraction donc légèrement élargie. Taille de l'image de la source a ces deux origines. 
+51:30. Résolution idéal. On ferme la fente source jusqu'à ce que le nb de fresnel est égal à 1. La taille de l'image est égale à 1.
+C'est un montage à la limite de Fresnel à Fraunhoffer
+52:34 : Formule des réseaux: il faut que l'angle d'incidence soir bien défini. L'éclairage sur le réseau doit être parallèle. 
+Il faut mettre la fente source au point focal d'une lentille. et faire l'image dans le plan focal d'une lentille de manière à observer à l'infini. 
+Le jury suggère d'utiliser un goniomètre; Lentille remplacée par des trucs plus compliqués appelé lunette autocollimatrice. 
+Si pas à l'aise, utiliser le spectroUSB. Ca doit pas être une boite noire. 
+55:23 : SpectroUSB. Fente d'entrée: coeur de la fibre. lentille ==> miroir concave (système plus compact). Ecran = CCD
+LE JURY SERA BIENVEILLANT CETTE ANNEE !! Ne pas faire de mesure au gonio si pas manipulée. 
+58:21 : Le réseau. Les ordres de diffraction se forme par interférences constructives des N fentes éclairées. Il faut éclairer un grand nombre de fentes. 
+Il faut focaliser la lummièe PAS sur la lentille de projection mais sur la fente d'entrée pas sur la lentille de projection. Mais aberration géométriques. Donc trouver un compromis. 
+<=> Il faut utiliser les lentilles de projection à pleines ouvertures ! 
+1:00:50. Si c'est trop aberrant. Il faut trouver un compromis. Il faut prendre des doublets pour limiter les aberrations chromatiques.
+1:02:00 :DEUXIEME GRANDE FAMILLE POUR LES SPECTROMETRES A TF.
+Théorème de Wiener Khintchine. 
+1:03:00 . Question de la résolution. Spectro TF ==> inversion des échelles. 
+1:15:00:Résolution : plus petit écart de fréquence détectable c'est le plus grand chariotage que je peux faire (inversion des échelles)
+Image de la rêgle. Plus on chariote loin. Plus on résout ! 
+1:21:00. MANIP CONSTANTE DE RYDBERG AVEC LE SPECTRO USB 
+A faire le mieux possible. Zoom sur chaque pic. On montre qu'il y plusieurs pixels car l'image de la fente d'entrée. 
+Estimer les incertitudes. on estime à 1/10 de la largeur du pic. Pic rouge, pic turquoise. Il faut augmenter le temps d'intégration car les pics disparaissent.
+On rentre tout cela dans regressi. On ajuste par A(b-1/x^2) Pour savoir quels franges on regarde. Quel série ? (balmer ?) Bien zoomer. Estimer l'incertitude et faire l'ajustement.
+1:26:00 Il faudrait faire un étalonnage avec des lampes hélium et mercure. Long à faire ! Donc faire à la fin si temps. J'ai pris l'étalonnage du constructeur, j'aurai dû faire l'étalonnage avec des lampes. 
+On peu mettre la fibre devant la lampe à eau mais on ne distingue plus les 2 raies. (cf. spectroscopie)
+1:28:00 :TRANSITION. Doublet. Michelson
+1:36:00 : Fabry-Perot. Utile de connaître ses performances
