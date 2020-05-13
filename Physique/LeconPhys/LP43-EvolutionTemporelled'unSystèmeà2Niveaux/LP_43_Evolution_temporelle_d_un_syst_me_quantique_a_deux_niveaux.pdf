@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><title></title><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<script type="text/javascript">
+
+if (window.parent && parent.rcmail) {
+	parent.rcmail.add_label({"loading":"Chargement...","servererror":"Erreur de serveur !","connerror":"Erreur de connexion (n'a pu atteindre le serveur) !","requesttimedout":"D\u00e9lai de la requ\u00eate expir\u00e9","refreshing":"Actualisation...","windowopenerror":"La fen\u00eatre contextuelle a \u00e9t\u00e9 bloqu\u00e9e !","uploadingmany":"T\u00e9l\u00e9versement des fichiers...","close":"Fermer","lilo_login.userNotFound":"Utilisateur inconnu. V\u00e9rifiez votre saisie ou <a href=\"https:\/\/mail.lilo.org\/create-account\">Inscrivez-vous<\/a>","lilo_login.wrongPassword":"Mot de passe incorrect. <a href=\"https:\/\/mail.lilo.org\/password\">R\u00e9initialiser mon mot de passe<\/a>","lilo_login.noMail":"Connectez vous avec votre adresse @lilo.org, ou <a href=\"https:\/\/mail.lilo.org\/create-account\">cr\u00e9ez l\u00e0 maintenant<\/a> !","lilo_login.bannedMail":"Ce compte \u00e0 \u00e9t\u00e9 suspendu","lilo_login.delayed":"Trop de tentative de connexion. Veillez reessayer dans quelques minutes.","lilo_login.serviceUnavailable":"Impossible de contacter le serveur, r\u00e9essayez ult\u00e9rieurement","login":"Connexion","folders":"Dossiers","search":"Recherche","attachment":"Pi\u00e8ce jointe","section":"Section","options":"Options"});
+	parent.rcmail.iframe_loaded("");
+	parent.rcmail.session_error(".\/?_task=login&_err=session");
+}
+</script>
+
+</head>
+<body>
+</body>
+</html>
